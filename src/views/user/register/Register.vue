@@ -290,7 +290,7 @@
               </template>
             </a-table>
           </a-tab-pane>
-          <a-tab-pane tab="现场审查" key="4">
+          <a-tab-pane tab="履历" key="4">
             <a-button style="margin-bottom: 10px" type="primary" @click="addRow('resume')" :disabled="formDisabled">新增</a-button>
             <a-table
               ref="table"
