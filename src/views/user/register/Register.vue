@@ -192,7 +192,7 @@
 
               <template slot-scope="text,record,index" slot="action">
                 <a @click="delRow('qualification',index)" :disabled="formDisabled">删除</a>
-                <a @click='uploadFile(record,index)' :disabled="formDisabled" style='margin-left: 10px'>上传文件</a>
+                <a @click="uploadFile(record, index, 'qualification')" :disabled="formDisabled" style='margin-left: 10px'>上传文件</a>
               </template>
             </a-table>
           </a-tab-pane>
@@ -287,6 +287,29 @@
 
               <template slot-scope="text,record,index" slot="action">
                 <a @click="delRow('fast',index)" :disabled="formDisabled">删除</a>
+              </template>
+            </a-table>
+          </a-tab-pane>
+          <a-tab-pane tab="现场审查" key="4">
+            <a-button style="margin-bottom: 10px" type="primary" @click="addRow('resume')" :disabled="formDisabled">新增</a-button>
+            <a-table
+              ref="table"
+              size="middle"
+              bordered
+              rowKey="id"
+              :scroll="{x:true}"
+              :columns="basSupplierResumeTable.columns"
+              :dataSource="basSupplierResumeTable.dataSource"
+            >
+              <template slot-scope="text,record,index" slot="filePath">
+                <j-upload v-model="record.filePath" :trigger-change="true" disabled style="width: 200px"></j-upload>
+              </template>
+              <template slot-scope="text,record,index" slot="remark">
+                <a-input v-model="record.remark" placeholder="请输入备注" type="textarea" :disabled="formDisabled"></a-input>
+              </template>
+              <template slot-scope="text,record,index" slot="action">
+                <a @click="delRow('resume',index)" :disabled="formDisabled">删除</a>
+                <a @click="uploadFile(record, index, 'resume')" :disabled="formDisabled" style='margin-left: 10px'>上传文件</a>
               </template>
             </a-table>
           </a-tab-pane>
@@ -734,7 +757,7 @@
         @cancel="handleClose"
         :okButtonProps="{ class:{'jee-hidden': disableSubmit} }">
         <template slot="footer">
-          <a-button key="submit" @click="handleClose" type="primary" >取消</a-button>
+          <a-button key="cancel" @click="handleClose" type="primary" >取消</a-button>
           <a-button key="submit" @click="handleSubmit" type="primary" v-if="!disabled">提交</a-button>
         </template>
         <j-upload v-model="attachment" :trigger-change="true" :disabled="disabled"></j-upload>
@@ -820,6 +843,41 @@ export default {
           }
         ]
       },
+      basSupplierResumeTable: {
+          loading: false,
+          dataSource: [],
+          columns: [
+            {
+              title: '序号',
+              dataIndex: '',
+              key:'rowIndex',
+              width:60,
+              align:"center",
+              customRender:function (t,r,index) {
+                return parseInt(index)+1;
+              }
+            },
+            {
+              title: '附件',
+              dataIndex: 'filePath',
+              width:200,
+              scopedSlots: { customRender: 'filePath' },
+            },
+            {
+              title: '备注',
+              dataIndex: 'remark',
+              width:400,
+              scopedSlots: { customRender: 'remark' },
+            },
+            {
+              title: '操作',
+              dataIndex: 'action',
+              align:"center",
+              width:80,
+              scopedSlots: { customRender: 'action' },
+            }
+          ]
+        },
       options: [
         {
           value: "110000",
@@ -12368,6 +12426,7 @@ export default {
       disableSubmit:false,
       index:0,
       attachment:'',
+      attachmentType: '',
       visible:false,
       confirmLoading:false,
       activeKey:'0',
@@ -12727,13 +12786,22 @@ export default {
       })
     },
     handleSubmit(){
-      this.basSupplierQualificationTable.dataSource[this.index].qualUrl = this.attachment;
+      if (this.attachmentType === 'resume') {
+        this.basSupplierResumeTable.dataSource[this.index].filePath = this.attachment;
+      } else {
+        this.basSupplierQualificationTable.dataSource[this.index].qualUrl = this.attachment;
+      }
       this.handleClose();
     },
-    uploadFile(record,index){
+    uploadFile(record,index, type){
       this.visible = true;
       this.index = index;
-      this.attachment = this.basSupplierQualificationTable.dataSource[this.index].qualUrl;
+      this.attachmentType = type;
+      if (type === 'resume') {
+        this.attachment = this.basSupplierResumeTable.dataSource[this.index].filePath;
+      } else {
+        this.attachment = this.basSupplierQualificationTable.dataSource[this.index].qualUrl;
+      }
     },
     handleClose(){
       this.visible = false;
@@ -12809,6 +12877,15 @@ export default {
           address:''
         }
         this.basSupplierFastTable.dataSource.push(row);
+      }else if(type == 'resume'){
+        if(this.basSupplierResumeTable.dataSource == null){
+          this.basSupplierResumeTable.dataSource = [];
+        }
+        let row = {
+          filePath: '',
+          remark:'',
+        }
+        this.basSupplierResumeTable.dataSource.push(row);
       }
     },
     handleOk(){
