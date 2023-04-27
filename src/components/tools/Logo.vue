@@ -4,12 +4,12 @@
 
       <!-- update-begin- author:sunjianlei --- date:20190814 --- for: logo颜色根据主题颜色变化 -->
       <!-- <img v-if="navTheme === 'dark'" src="~@/assets/logo-white.png" alt="logo"> -->
-      <img src="~@/assets/login_images/luomu.png" alt="logo" >
-      <img src="~@/assets/login_images/login2.png" alt="logo" style="display: block;height:30px">
+      <img src="~@/assets/login_images/luomu.png" alt="logo" style="width: 60%;">
+      <img src="~@/assets/login_images/login2.png" alt="logo" style="display: block;height:40px;width: 60%;" >
       <!-- update-begin- author:sunjianlei --- date:20190814 --- for: logo颜色根据主题颜色变化 -->
 
       <!-- <h1 v-if="showTitle">{{ title }}</h1> -->
-    </router-link>
+    </router-link >
   </div>
 </template>
 
@@ -46,7 +46,7 @@
     box-shadow: none !important;
     .logo {
       height: @height !important;
-      line-height: 55px !important;
+      line-height: 46px !important;
       box-shadow: none !important;
       transition: background 300ms;
 
