@@ -119,7 +119,8 @@
       background-image: url(../../assets/login_images/image2.jpg);
       background-repeat: no-repeat;
       background-size: 100% auto;
-      background-position: center -26.5vw;
+      /* background-position: center -26.5vw; */
+      background-position: center -18.5vw;
       width: calc(100% + 24px);
       margin-left: -12px;
       margin-top: -12px;
@@ -156,7 +157,8 @@
       background-image: url(../../assets/login_images/image2.jpg);
       background-repeat: no-repeat;
       background-size: 100% auto;
-      background-position: center -27.5vw;
+      /* background-position: center -27.5vw; */
+      background-position: center -19.5vw;
       width: calc(100% + 24px);
       margin-left: -12px;
       margin-top: -12px;
@@ -198,6 +200,7 @@
       background-repeat: no-repeat;
       background-size: 100% auto;
       background-position: center -28vw;
+      background-position: center -18.2vw;
       width: calc(100% + 24px);
       margin-left: -12px;
       margin-top: -12px;
@@ -234,7 +237,8 @@
       background-image: url(../../assets/login_images/image2.jpg);
       background-repeat: no-repeat;
       background-size: 100% auto;
-      background-position: center -28.2vw;
+      /* background-position: center -28.2vw; */
+      background-position: center -18.2vw;
       width: calc(100% + 24px);
       margin-left: -12px;
       margin-top: -12px;
@@ -271,7 +275,8 @@
       background-image: url(../../assets/login_images/image2.jpg);
       background-repeat: no-repeat;
       background-size: 100% auto;
-      background-position: center -29vw;
+      background-position: center -19.2vw;
+      /* background-position: center -29vw; */
       width: calc(100% + 24px);
       margin-left: -12px;
       margin-top: -12px;

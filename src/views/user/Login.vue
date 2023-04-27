@@ -1,7 +1,7 @@
 <template>
   <div>
-	  <div style="position: absolute;left: 8%;top: 38%;">
-		  <img style="width: 480px;" src="../../assets/login_images/banner.png" />
+	  <div style="position: absolute;left: 4%;top: 5%;">
+		  <img style="width: 350px;" src="../../assets/login_images/banner.png" />
 	  </div>
 	  <div class="main" style="padding-bottom: 70px;">
 	    <a-form :form="form" class="user-layout-login" ref="formLogin" id="formLogin">
@@ -459,8 +459,8 @@
   margin: 0 auto;
   background: #fff;
   position: absolute;
-  right: 15%;
-  top: 25%;
+  right: 5%;
+  top: 20%;
   box-shadow: 3px 4px 5px rgb(0 0 0 / 10%);
   border-radius: 0px;
   .login-logo{

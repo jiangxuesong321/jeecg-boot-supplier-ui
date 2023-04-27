@@ -15,9 +15,9 @@
       :mode="mode"
       :style="smenuStyle">
     </s-menu>
-    <div>
+    <!-- <div>
       <img src="../../assets/svg/kouhao.svg" style="width: 90%;margin-left: 5%;position: absolute;bottom: 20px;" />
-    </div>
+    </div> -->
   </a-layout-sider>
 
 </template>
@@ -63,6 +63,7 @@
         let style = { 'padding': '0' }
         if (this.fixSiderbar) {
           style['height'] = 'calc(100% - 59px)'
+        
           style['overflow'] = 'auto'
           style['overflow-x'] = 'hidden'
         }
