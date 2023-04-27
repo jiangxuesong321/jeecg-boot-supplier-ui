@@ -72,7 +72,7 @@
             </td>
           </tr>
           <tr>
-            <th>联&nbsp;&nbsp;系&nbsp;&nbsp;人</th>
+            <th>收&nbsp;&nbsp;货&nbsp;&nbsp;人</th>
             <td>
               {{record.receiveUser}}
             </td>
@@ -173,7 +173,7 @@
       </a-row>
     </div>
     <div class="drawer-footer" style="text-align: center;margin-top:15px;">
-      <a-button  @click="pdfDownload" style="margin-left:10px;" type="primary" ghost >下载PDF</a-button>
+      <a-button  @click="pdfDownload" style="margin-left:10px;" type="primary" ghost v-if='record.sendStatus == "2"'>下载PDF</a-button>
 <!--      <a-button  @click="handleOk" type="primary" v-if="!disableSubmit" style="margin-left:10px;">提交</a-button>-->
       <a-button key="cancel" @click="handleCancel" style="margin-left:10px;" type="primary" ghost>取消</a-button>
     </div>

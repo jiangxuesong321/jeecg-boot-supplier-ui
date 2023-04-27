@@ -78,12 +78,11 @@
             </a-form-model-item>
           </a-col>
 
-          <a-col :span="8" >
-            <a-form-model-item label="收款类型" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="payType">
-<!--              <a-input v-model="model.payType" placeholder="请输入收款类型" ></a-input>-->
-              <j-dict-select-tag v-model="model.payType" placeholder="请输入收款类型" dictCode="payType" :disabled="formDisabled"/>
-            </a-form-model-item>
-          </a-col>
+<!--          <a-col :span="8" >-->
+<!--            <a-form-model-item label="收款类型" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="payType">-->
+<!--              <j-dict-select-tag v-model="model.payType" placeholder="请输入收款类型" dictCode="payType" :disabled="formDisabled"/>-->
+<!--            </a-form-model-item>-->
+<!--          </a-col>-->
 
           <a-divider orientation="left" style="color: #00A0E9">
             收款信息
@@ -96,9 +95,8 @@
             </a-col>
 
             <a-col :span="8" >
-              <a-form-model-item label="收款账号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="receivingNumber">
-                <!--              <a-input v-model="model.receivingNumber" placeholder="请输入收款账号" :disabled="formDisabled"></a-input>-->
-                <a-select v-model="model.receivingNumber" placeholder="请输入收款账号" @change='setBank' :disabled="formDisabled">
+              <a-form-model-item label="收款账号" :labelCol="labelCol" :wrapperCol="wrapperCol" required>
+                <a-select v-model="model.receivingNumber" placeholder="请输入收款账号" @change='setBank' :disabled="formDisabled" >
                   <a-select-option
                     v-for="item in accountList"
                     :key="item.bankAccountNum"
@@ -110,8 +108,8 @@
             </a-col>
 
             <a-col :span="8" >
-              <a-form-model-item label="收款开户行" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="receivingBank">
-                <a-input v-model="model.receivingBank" placeholder="请输入收款开户行" disabled></a-input>
+              <a-form-model-item label="收款开户行" :labelCol="labelCol" :wrapperCol="wrapperCol" required>
+                <a-input v-model="model.receivingBank" placeholder="请输入收款开户行" disabled ></a-input>
               </a-form-model-item>
             </a-col>
           </a-row>
@@ -140,10 +138,16 @@
             ref="table"
             size="middle"
             bordered
-            :scroll="{x:true,y:500}"
+            :scroll="{x:1800,y:500}"
             :columns="columns"
             :dataSource="dataSource"
             :pagination="false">
+
+            <template slot='payType' slot-scope='text,record'>
+              <j-dict-select-tag v-model="record.payType" placeholder="请输入收款类型" dictCode="payType" :disabled="formDisabled"
+                                 :getPopupContainer='getPopupContainer'/>
+            </template>
+
             <template slot='contractAmountTax' slot-scope='text,record'>
               <a-input-number v-model='record.contractAmountTax' :disabled="formDisabled" @change='setAmount' style='width:100%'></a-input-number>
             </template>
@@ -340,12 +344,6 @@ export default {
               return parseInt(index)+1;
             }
           },
-          // {
-          //   title: '设备标识',
-          //   dataIndex: 'prodCode',
-          //   align:"center",
-          //   width:140,
-          // },
           {
             title: '设备名称',
             dataIndex: 'prodName',
@@ -376,6 +374,13 @@ export default {
             dataIndex: 'no',
             align:"center",
             width:120,
+          },
+          {
+            title: '收款类型',
+            dataIndex: 'payType',
+            align:"center",
+            width:120,
+            scopedSlots: {customRender: 'payType'},
           },
           {
             title: '发货时间',
@@ -429,29 +434,30 @@ export default {
 
         validatorRules: {
           contractId: [
-            { required: true, message: '请选择合同!'},
+            { required: true, message: '请选择合同!',trigger: 'blur'},
           ],
           payRate: [
-            { required: true, message: '请输入收款比例!'},
+            { required: true, message: '请输入收款比例!',trigger: 'blur'},
           ],
           payMethod: [
-            { required: true, message: '请输入收款方式!'},
+            { required: true, message: '请输入收款方式!',trigger: 'blur'},
           ],
           payType: [
-            { required: true, message: '请输入收款类型!'},
+            { required: true, message: '请输入收款类型!',trigger: 'blur'},
           ],
           dueDate:[
-            { required: true, message: '请输入应付日期!'},
+            { required: true, message: '请输入应付日期!',trigger: 'blur'},
           ],
           suppAttachment:[
-            { required: true, message: '请上传附件!'},
+            { required: true, message: '请上传附件!',trigger: 'blur'},
           ],
           receivingBank:[
-            { required: true, message: '请输入收款开户行!'},
+            { required: true, message: '请输入收款开户行!',trigger: 'change'},
           ],
           receivingNumber:[
-            { required: true, message: '请输入收款账号!'},
+            { required: true, message: '请输入收款账号!',trigger: 'change'},
           ]
+
         },
         url: {
           add: "/srm/purPayApply/add",
@@ -479,6 +485,48 @@ export default {
     created () {
     },
     methods: {
+      getPopupContainer(node) {
+        let element = (() => {
+          // nodeType 8	: Comment	: 注释
+          if (this.$el && this.$el.nodeType !== 8) {
+            return this.$el
+          }
+          let doc = document.getElementById(this.caseId + 'inputTable')
+          if (doc != null) {
+            return doc
+          }
+          return node.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+        })()
+
+        // 递归判断是否带有 overflow: hidden；的父元素
+        const ifParent = (child) => {
+          let currentOverflow = null
+          if (child['currentStyle']) {
+            currentOverflow = child['currentStyle']['overflow']
+          } else if (window.getComputedStyle) {
+            currentOverflow = window.getComputedStyle(child)['overflow']
+          }
+          if (currentOverflow != null && currentOverflow != undefined) {
+            if (currentOverflow === 'hidden') {
+              // 找到了带有 hidden 的标签，判断它的父级是否还有 hidden，直到遇到完全没有 hidden 或 body 的时候才停止递归
+              let temp = ifParent(child.parentNode)
+              return temp != null ? temp : child.parentNode
+            }
+            // 当前标签没有 hidden ，如果有父级并且父级不是 body 的话就继续递归判断父级
+            else if (child.parentNode && child.parentNode.tagName != undefined && child.parentNode.tagName.toLocaleLowerCase() !== 'body') {
+              return ifParent(child.parentNode)
+            } else {
+              // 直到 body 都没有遇到有 hidden 的标签
+              return null
+            }
+          } else {
+            return child
+          }
+        }
+
+        let temp = ifParent(element)
+        return temp != null ? temp : element
+      },
       fetchRate(){
         let that = this;
         that.model.exchangeRate = Number(1);
@@ -683,18 +731,32 @@ export default {
               method = 'put';
             }
 
+            let receivingNumber = that.model.receivingNumber;
+            if(isNullOrEmpty(receivingNumber)){
+              that.$message.error("请输入收款账号");
+              return false;
+            }
+            let receivingBank = that.model.receivingBank;
+            if(isNullOrEmpty(receivingBank)){
+              that.$message.error("请输入收款开户行");
+              return false;
+            }
+
             let dataSource = that.dataSource;
             let msg = "";
             if(dataSource == null || dataSource.length == 0){
               that.$message.error("请选择设备");
               return false;
             }
-
             for(let i = 0 ;i < dataSource.length; i++){
               // if(isNullOrEmpty(dataSource[i].no)){
               //   that.$message.error("第" + (i+1) + "行,请输入发货合同设备序号");
               //   return false;
               // }
+              if(isNullOrEmpty(dataSource[i].payType)){
+                that.$message.error("第" + (i+1) + "行,请选择付款类型");
+                return false;
+              }
               if(isNullOrEmpty(dataSource[i].sendTime)){
                 that.$message.error("第" + (i+1) + "行,请输入发货时间");
                 return false;
@@ -703,10 +765,10 @@ export default {
                 that.$message.error("第" + (i+1) + "行,请输入付款金额");
                 return false;
               }
-              let totalAmount = Number(dataSource[i].contractAmountTax) + Number(dataSource[i].hasContractAmountTax);
-              if(totalAmount > dataSource[i].priceTax){
-                msg= msg + "第" + (i+1) + "行,累计付款金额大于合同金额;";
-              }
+              // let totalAmount = Number(dataSource[i].contractAmountTax) + Number(dataSource[i].hasContractAmountTax);
+              // if(totalAmount > dataSource[i].priceTax){
+              //   msg= msg + "第" + (i+1) + "行,累计付款金额大于合同金额;";
+              // }
             }
             that.model.purPayApplyDetailList = dataSource;
             that.model.applyInvoiceList = that.icSource;

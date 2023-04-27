@@ -25,6 +25,7 @@
                 <a-select-option value='0'>待审核</a-select-option>
                 <a-select-option value='1'>驳回</a-select-option>
                 <a-select-option value='2'>审核通过</a-select-option>
+                <a-select-option value='3'>重新上传签收单</a-select-option>
               </a-select>
             </a-form-item>
           </a-col>
@@ -53,7 +54,7 @@
         :loading="loading"
         @change="handleTableChange">
         <template slot='billNo' slot-scope='text,record'>
-          <a @click='downLoadPdf(record)'>{{text}}</a>
+          <a @click='handleDetail(record)'>{{text}}</a>
         </template>
 
 
@@ -61,15 +62,22 @@
           <span>
             <a @click="handleEdit(record)" v-if='record.sendStatus == "1"'>编辑</a>
 <!--            <a @click="handleDetail(record)" v-else>查看</a>-->
+            <a-divider type="vertical" />
+            <a @click='downLoadPdf(record)'>发货单</a>
           </span>
+          <!--审批通过-->
           <span v-if='record.sendStatus == "2"'>
-            <a-divider type="vertical" />
-            <a @click='uploadFile(record)'>回传签收单</a>
-            <a-divider type="vertical" />
-            <a @click='downLoadPdf(record)'>下载发货单</a>
+            <a-divider type="vertical" v-if='record.attachment == null || record.attachment == undefined || record.attachment == "" '/>
+            <a @click='uploadFile(record)' v-if='record.attachment == null || record.attachment == undefined || record.attachment == ""'>回传签收单</a>
             <a-divider type="vertical" />
             <a @click='handleFast(record)'>维护承运信息</a>
           </span>
+          <!--重新上传签收单-->
+          <span v-if='record.sendStatus == "3"'>
+            <a-divider type="vertical" v-if='record.sendStatus == "3"'/>
+            <a @click='uploadFile(record)' v-if='record.sendStatus == "3"'>回传签收单</a>
+          </span>
+
 
         </span>
 
@@ -206,6 +214,8 @@
                  return '驳回';
                }else if(t == '2'){
                  return '审批通过';
+               }else if(t == '3'){
+                 return '重新上传签收单';
                }
             }
           },
@@ -219,7 +229,7 @@
             title: '操作',
             dataIndex: 'action',
             align:"center",
-            width:125,
+            width:110,
             scopedSlots: { customRender: 'action' }
           }
         ],

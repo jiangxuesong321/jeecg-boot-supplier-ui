@@ -10,17 +10,17 @@
           <a-row>
             <a-col :span="8">
               <a-form-model-item label="企业名字" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="name">
-                <a-input v-model="model.name" placeholder="请输入企业名字" :maxLength="50"></a-input>
+                <a-input v-model="model.name" placeholder="请输入企业名字" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="社会信用代码" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="socialCode">
-                <a-input v-model="model.socialCode" placeholder="请输入社会信用代码" :maxLength="100"></a-input>
+                <a-input v-model="model.socialCode" placeholder="请输入社会信用代码" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8">
               <a-form-model-item label="企业简称" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="shortName">
-                <a-input v-model="model.shortName" placeholder="请输入企业简称" :maxLength="50"></a-input>
+                <a-input v-model="model.shortName" placeholder="请输入企业简称" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8">
@@ -50,32 +50,32 @@
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="注册地址" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="registerArea">
-                <a-input v-model="model.registerArea" placeholder="请输入注册地址" :maxLength="100"></a-input>
+                <a-input v-model="model.registerArea" placeholder="请输入注册地址" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="经营地址" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="bizArea">
-                <a-input v-model="model.bizArea" placeholder="请输入经营地址" :maxLength="100"></a-input>
+                <a-input v-model="model.bizArea" placeholder="请输入经营地址" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="企业电话" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="telephone">
-                <a-input v-model="model.telephone" placeholder="请输入企业电话" :maxLength="20"></a-input>
+                <a-input v-model="model.telephone" placeholder="请输入企业电话" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="企业邮箱" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="telephone">
-                <a-input v-model="model.email" placeholder="请输入企业邮箱" :maxLength="30"></a-input>
+                <a-input v-model="model.email" placeholder="请输入企业邮箱" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="企业传真" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="fax">
-                <a-input v-model="model.fax" placeholder="请输入企业传真" :maxLength="20"></a-input>
+                <a-input v-model="model.fax" placeholder="请输入企业传真" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
               <a-form-model-item label="网站地址" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"  prop="website">
-                <a-input v-model="model.website" placeholder="请输入网站地址" :maxLength="200"></a-input>
+                <a-input v-model="model.website" placeholder="请输入网站地址" ></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :span="8" >
@@ -114,27 +114,27 @@
           >
 
             <template slot-scope="text,record,index" slot="contacter">
-              <a-input v-model="record.contacter" placeholder="联系人" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.contacter" placeholder="联系人" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="contacterEmail">
-              <a-input v-model="record.contacterEmail" placeholder="联系人邮箱" :disabled="formDisabled" :maxLength="30"></a-input>
+              <a-input v-model="record.contacterEmail" placeholder="联系人邮箱" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="contacterTel">
-              <a-input v-model="record.contacterTel" placeholder="联系人电话" :disabled="formDisabled" :maxLength="11"></a-input>
+              <a-input v-model="record.contacterTel" placeholder="联系人电话" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="contacterPosition">
-              <a-input v-model="record.contacterPosition" placeholder="联系人职位" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.contacterPosition" placeholder="联系人职位" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="contacterDepartment">
-              <a-input v-model="record.contacterDepartment" placeholder="联系人部门" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.contacterDepartment" placeholder="联系人部门" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="contacterAddress">
-              <a-input v-model="record.contacterAddress" placeholder="联系人地址" :disabled="formDisabled" :maxLength="100"></a-input>
+              <a-input v-model="record.contacterAddress" placeholder="联系人地址" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="isDefault">
@@ -143,7 +143,7 @@
             </template>
 
             <template slot-scope="text,record,index" slot="remark">
-              <a-input v-model="record.remark" placeholder="备注" type="textarea" :disabled="formDisabled" :maxLength="200" :rows='1'></a-input>
+              <a-input v-model="record.remark" placeholder="备注" type="textarea" :disabled="formDisabled"  :rows='1'></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="action">
@@ -165,7 +165,7 @@
           >
 
             <template slot-scope="text,record,index" slot="qualificationName">
-              <a-input v-model="record.qualificationName" placeholder="资质证书名称" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.qualificationName" placeholder="资质证书名称" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="qualUrl">
@@ -182,7 +182,7 @@
             </template>
 
             <template slot-scope="text,record,index" slot="remark">
-              <a-input type='textarea' v-model='record.remark' :maxLength="100" :rows='1'></a-input>
+              <a-input type='textarea' v-model='record.remark'  :rows='1'></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="status">
@@ -215,19 +215,19 @@
             :dataSource="basSupplierBankTable.dataSource"
           >
             <template slot-scope="text,record,index" slot="bankAccountName">
-              <a-input v-model="record.bankAccountName" placeholder="账户名称" :disabled="formDisabled" :maxLength="100"></a-input>
+              <a-input v-model="record.bankAccountName" placeholder="账户名称" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="bankAccountNum">
-              <a-input v-model="record.bankAccountNum" placeholder="银行账号" :disabled="formDisabled" :maxLength="30"></a-input>
+              <a-input v-model="record.bankAccountNum" placeholder="银行账号" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="bankBranch">
-              <a-input v-model="record.bankBranch" placeholder="开户行" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.bankBranch" placeholder="开户行" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="bankName">
-              <a-input v-model="record.bankName" placeholder="所属银行" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.bankName" placeholder="所属银行" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="currency">
@@ -236,7 +236,7 @@
             </template>
 
             <template slot-scope="text,record,index" slot="swiftCode">
-              <a-input v-model="record.swiftCode" placeholder="swiftCode" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.swiftCode" placeholder="swiftCode" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="type">
@@ -251,7 +251,7 @@
             </template>
 
             <template slot-scope="text,record,index" slot="remark">
-              <a-input v-model="record.remark" placeholder="备注" type="textarea" :disabled="formDisabled" :maxLength="200" :rows='1'></a-input>
+              <a-input v-model="record.remark" placeholder="备注" type="textarea" :disabled="formDisabled"  :rows='1'></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="action">
@@ -284,15 +284,23 @@
             </template>
 
             <template slot-scope="text,record,index" slot="sender">
-              <a-input v-model="record.sender" placeholder="收件人" :disabled="formDisabled" :maxLength="20"></a-input>
+              <a-input v-model="record.sender" placeholder="收件人" :disabled="formDisabled" ></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="senderTel">
-              <a-input v-model="record.senderTel" placeholder="收件人联系方式" :disabled="formDisabled" :maxLength="30"></a-input>
+              <a-input v-model="record.senderTel" placeholder="收件人联系方式" :disabled="formDisabled" ></a-input>
+            </template>
+
+            <template slot-scope="text,record" slot="country">
+              <j-dict-select-tag :disabled="formDisabled" type="select" v-model="record.country" dictCode="supp_prop" placeholder="请选择国内国外地址" style="width: 100%" :getPopupContainer='getParentContainer'/>
             </template>
 
             <template slot-scope="text,record,index" slot="areaList">
-              <a-cascader v-model="record.areaList" :options="options" placeholder="收件地区" :getPopupContainer='getPopupContainer' style='width: 100%'/>
+              <a-cascader v-model="record.areaList" :options="options" placeholder="收件地区" :getPopupContainer='getParentContainer' style='width: 100%'
+                          v-if="record.country == 'gn'"
+                          :disabled="formDisabled"/>
+
+              <a-input v-model="record.area" :disabled="formDisabled" v-if="record.country == 'gw'"></a-input>
             </template>
 
             <template slot-scope="text,record,index" slot="address">
@@ -11924,6 +11932,12 @@ export default {
             scopedSlots: { customRender: 'senderTel' },
           },
           {
+            title: '收件国家',
+            dataIndex: 'country',
+            width:140,
+            scopedSlots: { customRender: 'country' },
+          },
+          {
             title: '收件地区',
             dataIndex: 'areaList',
             width:200,
@@ -12358,7 +12372,8 @@ export default {
           senderTel:'',
           address:'',
           type:'',
-          remark:''
+          remark:'',
+          country:'gn'
         }
         this.basSupplierFastTable.dataSource.push(row);
       }
@@ -12405,20 +12420,20 @@ export default {
                 that.$message.warning('第' + (i + 1) + '行,联系人邮箱为空');
                 return;
               }
-              if(!validateEmail(contacterEmail)){
-                that.$message.warning('第' + (i + 1) + '行,联系人邮箱格式不正确');
-                return;
-              }
+              // if(!validateEmail(contacterEmail)){
+              //   that.$message.warning('第' + (i + 1) + '行,联系人邮箱格式不正确');
+              //   return;
+              // }
 
               let contacterTel = contact[i].contacterTel;
               if(isNullOrEmpty(contacterTel)){
                 that.$message.warning('第' + (i + 1) + '行,联系人电话为空');
                 return;
               }
-              if(!validateMobile(contacterTel)){
-                that.$message.warning('第' + (i + 1) + '行,联系人电话格式不正确');
-                return;
-              }
+              // if(!validateMobile(contacterTel)){
+              //   that.$message.warning('第' + (i + 1) + '行,联系人电话格式不正确');
+              //   return;
+              // }
 
               if(contact[i].isDefault == '1'){
                 isDefault.push(contact[i].isDefault);
@@ -12563,11 +12578,18 @@ export default {
               that.$message.warning('第' + (i + 1) + '行,收件人联系方式为空');
               return;
             }
-            if(fast[i].areaList == null || fast[i].areaList.length == 0){
-              that.$message.warning('第' + (i + 1) + '行,收件地区为空');
-              return;
+            if(fast[i].country == 'gn'){
+              if(fast[i].areaList == null || fast[i].areaList.length == 0){
+                that.$message.warning('第' + (i + 1) + '行,寄件地区为空');
+                return;
+              }
+              fast[i].area = fast[i].areaList.join(",");
+            }else{
+              if(fast[i].area == null || fast[i].area.length == 0){
+                that.$message.warning('第' + (i + 1) + '行,寄件地区为空');
+                return;
+              }
             }
-            fast[i].area = fast[i].areaList.join(",");
             if(isNullOrEmpty(fast[i].address)){
               that.$message.warning('第' + (i + 1) + '行,收件地址为空');
               return;

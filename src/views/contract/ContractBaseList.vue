@@ -5,12 +5,12 @@
         <a-row :gutter="24">
           <a-col :span="6">
             <a-form-item label="合同编码" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3">
-              <a-input placeholder="请输入合同编码" v-model="queryParam.contractNumber"></a-input>
+              <j-input placeholder="请输入合同编码" v-model="queryParam.contractNumber"></j-input>
             </a-form-item>
           </a-col>
           <a-col :span="6">
             <a-form-item label="合同名称" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3">
-              <a-input placeholder="请输入合同名称" v-model="queryParam.contractName"></a-input>
+              <j-input placeholder="请输入合同名称" v-model="queryParam.contractName"></j-input>
             </a-form-item>
           </a-col>
           <a-col :span='6'>

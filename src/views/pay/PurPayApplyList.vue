@@ -141,12 +141,12 @@
 						dataIndex: 'payMethod_dictText',
             width: 120,
 					},
-					{
-						title: '收款类型',
-						align: "center",
-						dataIndex: 'payType_dictText',
-            width: 120,
-					},
+					// {
+					// 	title: '收款类型',
+					// 	align: "center",
+					// 	dataIndex: 'payType_dictText',
+          //   width: 120,
+					// },
 					{
 						title: '收款比例(%)',
 						align: "center",
