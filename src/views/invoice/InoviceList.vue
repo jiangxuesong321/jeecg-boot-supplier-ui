@@ -35,9 +35,9 @@
 		<!-- 查询区域-END -->
 
 		<!-- 操作按钮区域 -->
-		<div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus">登记发票</a-button>
-		</div>
+<!--		<div class="table-operator">-->
+<!--      <a-button @click="handleAdd" type="primary" icon="plus">登记发票</a-button>-->
+<!--		</div>-->
 		<div>
 
 			<a-table ref="table" size="middle" :scroll="{x:true, y:500}" rowKey="id" :columns="columns"
@@ -54,13 +54,13 @@
         </template>
 
 				<span slot="action" slot-scope="text, record">
-					<a @click="handleEdit(record)" v-if='record.status == "2" || record.status == "0"'>编辑</a>
-					<a-divider type="vertical" v-if='record.status == "2" || record.status == "0"'/>
+					<a @click="handleEdit(record)" >编辑</a>
+					<a-divider type="vertical" />
           <a @click="handleDetail(record)">详情</a>
-          <a-divider type="vertical"/>
-          <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)" >
-            <a>删除</a>
-          </a-popconfirm>
+<!--          <a-divider type="vertical"/>-->
+<!--          <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)" >-->
+<!--            <a>删除</a>-->
+<!--          </a-popconfirm>-->
 				</span>
 			</a-table>
 
@@ -110,20 +110,26 @@
 							return parseInt(index) + 1;
 						}
 					},
-					{
-						title: '合同名称',
-						align: "center",
-						dataIndex: 'contractName',
-            width: 180,
-            scopedSlots: {
-              customRender: 'contractName'
-            }
-					},
+					// {
+					// 	title: '合同名称',
+					// 	align: "center",
+					// 	dataIndex: 'contractName',
+          //   width: 180,
+          //   scopedSlots: {
+          //     customRender: 'contractName'
+          //   }
+					// },
+          // {
+          //   title: '合同编码',
+          //   align: "center",
+          //   dataIndex: 'contractNumber',
+          //   width: 180,
+          // },
           {
-            title: '合同编码',
+            title: '发票名称',
             align: "center",
-            dataIndex: 'contractNumber',
-            width: 180,
+            dataIndex: 'invoiceName',
+            width: 120,
           },
 					{
 						title: '发票类型',
@@ -227,12 +233,12 @@
 						},
             width: 120,
 					},
-          {
-            title: '状态',
-            align: "center",
-            dataIndex: 'status_dictText',
-            width: 120,
-          },
+          // {
+          //   title: '状态',
+          //   align: "center",
+          //   dataIndex: 'status_dictText',
+          //   width: 120,
+          // },
 					{
 						title: '操作',
 						dataIndex: 'action',

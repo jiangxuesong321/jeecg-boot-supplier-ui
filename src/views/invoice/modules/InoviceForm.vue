@@ -3,15 +3,20 @@
 		<j-form-container :disabled="formDisabled">
 			<a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
 				<a-row>
-					<a-col :span="8">
-						<a-form-model-item label="合同名称" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"
-							prop="contractId">
-              <j-select-contract ref='contract' v-model="model.contractId" :multi="false" @change="backUser"></j-select-contract>
-						</a-form-model-item>
-					</a-col>
+<!--					<a-col :span="8">-->
+<!--						<a-form-model-item label="合同名称" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3"-->
+<!--							prop="contractId">-->
+<!--              <j-select-contract ref='contract' v-model="model.contractId" :multi="false" @change="backUser"></j-select-contract>-->
+<!--						</a-form-model-item>-->
+<!--					</a-col>-->
+<!--          <a-col :span="8">-->
+<!--            <a-form-model-item label="合同编码" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="contractNumber">-->
+<!--              <a-input v-model="model.contractNumber" placeholder="请输入合同编码" disabled></a-input>-->
+<!--            </a-form-model-item>-->
+<!--          </a-col>-->
           <a-col :span="8">
-            <a-form-model-item label="合同编码" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="contractNumber">
-              <a-input v-model="model.contractNumber" placeholder="请输入合同编码" disabled></a-input>
+            <a-form-model-item label="发票名称" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" >
+              <a-input v-model="model.invoiceName" disabled></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -22,7 +27,7 @@
 					<a-col :span="8">
 						<a-form-model-item label="发票类型" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="invoiceType">
 <!--							<j-dict-select-tag placeholder="请选择发票类型" v-model="model.invoiceType" dictCode="invoice_type"/>-->
-              <a-select placeholder="请选择发票类型" v-model="model.invoiceType" :disabled='!model.contractId' @change='setVal()'>
+              <a-select placeholder="请选择发票类型" v-model="model.invoiceType"  @change='setVal()'>
                 <a-select-option  value="0" v-if='model.currency == "RMB"'>增值税专用发票</a-select-option>
                 <a-select-option  value="1" v-if='model.currency == "RMB"'>增值税普通发票</a-select-option>
                 <a-select-option  value="2" v-if='model.currency != "RMB"'>形式发票</a-select-option>
@@ -71,7 +76,7 @@
 					<a-divider orientation="left" style="color: #00A0E9">
 						发票明细
 					</a-divider>
-          <a-button type='primary' @click='openDrawer' icon='plus' style='float: right;z-index: 999'>选择合同设备</a-button>
+<!--          <a-button type='primary' @click='openDrawer' icon='plus' style='float: right;z-index: 999'>选择合同设备</a-button>-->
 					<a-table
 					  ref="table"
 					  size="small"
@@ -199,31 +204,31 @@ export default {
 							return parseInt(index) + 1;
 						}
 					},
-					{
-						title: '设备编号',
-						align: "center",
-						dataIndex: 'prodCode',
-            width: 120,
-					},
+					// {
+					// 	title: '设备编号',
+					// 	align: "center",
+					// 	dataIndex: 'prodCode',
+          //   width: 120,
+					// },
 					{
 						title: '设备名称',
 						align: "center",
 						dataIndex: 'prodName',
             width: 120,
 					},
-					{
-						title: '规格型号',
-						align: "center",
-						dataIndex: 'prodSpecType',
-            ellipsis:true,
-            width: 120,
-					},
-					{
-						title: '单位',
-						align: "center",
-						dataIndex: 'unitId_dictText',
-            width: 120,
-					},
+					// {
+					// 	title: '规格型号',
+					// 	align: "center",
+					// 	dataIndex: 'prodSpecType',
+          //   ellipsis:true,
+          //   width: 120,
+					// },
+					// {
+					// 	title: '单位',
+					// 	align: "center",
+					// 	dataIndex: 'unitId_dictText',
+          //   width: 120,
+					// },
 					{
 						title: '数量',
 						align: "center",

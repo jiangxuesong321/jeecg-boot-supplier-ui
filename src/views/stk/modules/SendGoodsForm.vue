@@ -205,6 +205,13 @@
             width: 120,
             scopedSlots: {customRender: 'qty'}
           },
+          {
+            title: '收货数量',
+            align: "center",
+            dataIndex: 'qty',
+            width: 120,
+            scopedSlots: {customRender: 'qty'}
+          },
           // {
           //   title: '设备序号',
           //   align: "center",
