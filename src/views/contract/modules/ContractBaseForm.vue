@@ -22,11 +22,11 @@
               <a-input v-model="model.createTime" placeholder="请输入创建日期" disabled></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="8" >
-            <a-form-model-item label="合同类型" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="contractType">
-              <j-dict-select-tag  v-model="model.contractType" placeholder="请选择合同类型" dictCode="project_type" disabled/>
-            </a-form-model-item>
-          </a-col>
+<!--          <a-col :span="8" >-->
+<!--            <a-form-model-item label="合同类型" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="contractType">-->
+<!--              <j-dict-select-tag  v-model="model.contractType" placeholder="请选择合同类型" dictCode="project_type" disabled/>-->
+<!--            </a-form-model-item>-->
+<!--          </a-col>-->
           <a-col :span="8" >
             <a-form-model-item label="合同等级" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="contractLevel">
               <a-input v-model="model.contractLevel" placeholder="请输入合同等级" disabled></a-input>
@@ -74,9 +74,9 @@
             :columns="columns"
             :dataSource="dataSource"
             :pagination="false">
-            <template slot='action' slot-scope='text,record'>
-              <a @click='handleSplit(record)' :disabled="formDisabled">数量拆分</a>
-            </template>
+<!--            <template slot='action' slot-scope='text,record'>-->
+<!--              <a @click='handleSplit(record)' :disabled="formDisabled">数量拆分</a>-->
+<!--            </template>-->
           </a-table>
           <a-table
             v-if="model.reqType != '0'"
@@ -89,9 +89,9 @@
             :columns="columns1"
             :dataSource="dataSource"
             :pagination="false">
-            <template slot='action' slot-scope='text,record'>
-              <a @click='handleSplit(record)' :disabled="formDisabled">数量拆分</a>
-            </template>
+<!--            <template slot='action' slot-scope='text,record'>-->
+<!--              <a @click='handleSplit(record)' :disabled="formDisabled">数量拆分</a>-->
+<!--            </template>-->
           </a-table>
 
           <a-divider orientation="left" style="color: #00A0E9">
@@ -668,9 +668,9 @@ export default {
         contractName: [
           { required: true, message: '请输入合同标题!'},
         ],
-        contractType: [
-          { required: true, message: '请选择合同类型!'},
-        ],
+        // contractType: [
+        //   { required: true, message: '请选择合同类型!'},
+        // ],
         contractCurrency: [
           { required: true, message: '请选择合同币种!'},
         ],
@@ -867,12 +867,12 @@ export default {
           }
           that.model.contractStatus = "4";
           let dataSource = that.dataSource;
-          for(let i = 0; i < dataSource.length; i++){
-            if(dataSource[i].childList == null || dataSource[i].childList.length == 0){
-              that.$message.warning("第" + (i+1) + "行,标的信息数量未拆分");
-              return;
-            }
-          }
+          // for(let i = 0; i < dataSource.length; i++){
+          //   if(dataSource[i].childList == null || dataSource[i].childList.length == 0){
+          //     that.$message.warning("第" + (i+1) + "行,标的信息数量未拆分");
+          //     return;
+          //   }
+          // }
 
 
           that.model.contractObjectList = dataSource;
