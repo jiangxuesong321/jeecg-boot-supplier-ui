@@ -865,7 +865,7 @@ export default {
             }
             that.model.contractPayStepList = dataSource3;
           }
-          that.model.contractStatus = "2";
+          that.model.contractStatus = "4";
           let dataSource = that.dataSource;
           for(let i = 0; i < dataSource.length; i++){
             if(dataSource[i].childList == null || dataSource[i].childList.length == 0){
