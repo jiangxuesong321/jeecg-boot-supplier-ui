@@ -91,12 +91,12 @@ import { iegAmount, preciseNum } from '@/utils/util'
         },
         dataSource:[],
         columns:[
-          {
-            title: '序号',
-            dataIndex: 'sort',
-            width:60,
-            align:"center",
-          },
+          // {
+          //   title: '序号',
+          //   dataIndex: 'sort',
+          //   width:60,
+          //   align:"center",
+          // },
           // {
           //   title: '设备编码',
           //   dataIndex: 'prodCode',
@@ -209,6 +209,12 @@ import { iegAmount, preciseNum } from '@/utils/util'
               obj.attrs.align = 'right';//控制表体内容居右
               return obj;
             }
+          },
+          {
+            title: '已发数量',
+            dataIndex: 'toSendQty',
+            width:120,
+            align:"center",
           },
           {
             title: '已付金额',

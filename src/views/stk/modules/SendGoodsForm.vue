@@ -86,6 +86,9 @@
             :columns="columns"
             :dataSource="dataSource"
             :pagination="false">
+            <template slot='qty' slot-scope='text,record'>
+              <a-input-number v-model='record.qty' :disabled="formDisabled"></a-input-number>
+            </template>
             <template slot='sendTime' slot-scope='text,record'>
               <a-date-picker v-model="record.sendTime" placeholder="发货时间" style="width: 100%;" :disabled="formDisabled"/>
             </template>
@@ -109,6 +112,16 @@
             <a-col :span="8">
               <a-form-model-item label="备注" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="sendTime">
                 <a-input v-model="model.sendRemark" placeholder="备注" :disabled="formDisabled" type='textarea'/>
+              </a-form-model-item>
+            </a-col>
+          </a-row>
+          <a-divider orientation="left" style="color: #00A0E9">
+            箱单附件
+          </a-divider>
+          <a-row>
+            <a-col :span="8">
+              <a-form-model-item label="箱单附件" :labelCol="spans.labelCol3" :wrapperCol="spans.wrapperCol3" prop="packAttachment">
+                <j-upload v-model="model.packAttachment" :trigger-change="true" :disabled="formDisabled"></j-upload>
               </a-form-model-item>
             </a-col>
           </a-row>
@@ -180,17 +193,24 @@
             width: 120,
           },
           {
+            title: '合同数量',
+            align: "center",
+            dataIndex: 'contractQty',
+            width: 120,
+          },
+          {
             title: '发货数量',
             align: "center",
             dataIndex: 'qty',
             width: 120,
+            scopedSlots: {customRender: 'qty'}
           },
-          {
-            title: '设备序号',
-            align: "center",
-            dataIndex: 'sort',
-            width: 120,
-          },
+          // {
+          //   title: '设备序号',
+          //   align: "center",
+          //   dataIndex: 'sort',
+          //   width: 120,
+          // },
           {
             title: '序列号',
             align: "center",
@@ -250,6 +270,9 @@
           sendUserTel: [
             { required: true,  message: '请输入发货人联系方式', trigger: 'blur' }
           ],
+          packAttachment:[
+            { required: true,  message: '请输入箱单附件', trigger: 'blur' }
+          ]
         },
         url: {
           add: "/srm/stkIoBill/add",
@@ -318,6 +341,7 @@
           if(!flag){
             item.materialId = item.prodId;
             item.orderDetailId = item.id;
+            item.contractQty = item.qty;
             this.dataSource.push(item);
           }
         })
@@ -396,16 +420,20 @@
               that.$message.error("请选择发货明细");
               return;
             }
-            for(let i = 0; i < dataSource.length; i++){
-              if(isNullOrEmpty(dataSource[i].seqNo)){
-                that.$message.error("第" + (i+1) + "行,请输入序列号");
-                return;
-              }
-              if(isNullOrEmpty(dataSource[i].sendTime)){
-                that.$message.error("第" + (i+1) + "行,请输入发货时间");
-                return;
-              }
-            }
+            // for(let i = 0; i < dataSource.length; i++){
+            //   if(isNullOrEmpty(dataSource[i].seqNo)){
+            //     that.$message.error("第" + (i+1) + "行,请输入序列号");
+            //     return;
+            //   }
+            //   if(isNullOrEmpty(dataSource[i].packNo)){
+            //     that.$message.error("第" + (i+1) + "行,请输入箱单编号");
+            //     return;
+            //   }
+            //   if(isNullOrEmpty(dataSource[i].sendTime)){
+            //     that.$message.error("第" + (i+1) + "行,请输入发货时间");
+            //     return;
+            //   }
+            // }
             that.model.stkIoBillEntryList = dataSource;
             that.$confirm({
               content: `是否确认提交?`,
